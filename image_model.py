@@ -27,27 +27,27 @@ class ImageNetwork:
 	def array_to_image(self):  # (PIL.Image)
 		pass
 
+	#só passar o diretorio de teste ou de treino quando for utilizar nos modelos
+	def dataset_create(self, directory):
 
-	def dataset_create(self):
-		# Training dataset
-		#Missing batch size
-		train_ds = image_dataset_from_directory(
-			"images_train/",
+		_directory = directory
+		#1 imagem em cada lote, porém utilizando apenas 5 imagens, logo cada lote ira possuir apenas uma unica imagem
+		dataset_build = image_dataset_from_directory(
+			_directory,
 			image_size=(300, 300),
-			label_mode=None,
-			color_mode="grayscale",
-		)
-		#Testing dataset
-		test_ds = image_dataset_from_directory(
-			"images_train/",
-			image_size=(300,300),
+			batch_size= 1,
 			label_mode=None,
 			color_mode="grayscale"
+			
 		)
 		
-		#A função image_dataset_from_directory retorna um objeto tf.data.Dataset.
-		#https://keras.io/api/preprocessing/image/
-		#https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image_dataset_from_directory
-
-		print(train_ds)
-
+		#printando informações do primeiro lote de imagens do dataset
+		for img in dataset_build: #para cada lote no dataset
+			for batch in img:	  #para cada imagem do lote	
+				imagem = array_to_img(batch) #transformando uma imagem do lote em uma imagem PIL
+				imagem.show()
+				print(type(imagem))
+		
+			break
+		
+		#return dataset_build
