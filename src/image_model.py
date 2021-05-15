@@ -35,10 +35,9 @@ class ImageNetwork:
 		dataset_build = image_dataset_from_directory(
 			_directory,
 			image_size=(300, 300),
-			batch_size= 1,
+			batch_size= 32,
 			label_mode=None,
 			color_mode="grayscale"
-			
 		)
 		
 		#printando informações do primeiro lote de imagens do dataset
