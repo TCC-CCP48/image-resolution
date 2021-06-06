@@ -15,5 +15,5 @@ treino = objeto.dataset_create('src/images_train/')
 
 validacao = objeto.validation_dataset('src/images_validation')
 
-teste = NeuralModel().train(treino, validacao)
+teste = NeuralModel().training(treino, validacao)
 
