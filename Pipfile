@@ -1,16 +1,14 @@
 [[source]]
-name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
-
-[dev-packages]
+name = "pypi"
 
 [packages]
-numpy = "*"
 ipython = "*"
-tensorflow = "*"
 pillow = "*"
-graphviz = "*"
+tensorflow = "*"
+
+[dev-packages]
 
 [requires]
 python_version = "3.8"
