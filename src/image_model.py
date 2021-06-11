@@ -41,12 +41,32 @@ class ImageNetwork:
 		)
 		
 		#printando informações do primeiro lote de imagens do dataset
-		for img in dataset_build: #para cada lote no dataset
-			for batch in img:	  #para cada imagem do lote	
-				imagem = array_to_img(batch) #transformando uma imagem do lote em uma imagem PIL
+		'''for batch in dataset_build: #para cada lote no dataset
+			for img in batch:	  #para cada imagem do lote	
+				imagem = array_to_img(img) #transformando uma imagem do lote em uma imagem PIL
 				imagem.show()
 				print(type(imagem))
+				break
+			break'''
 		
-			break
-		
-		#return dataset_build
+		return dataset_build
+
+	def validation_dataset(self, directory):
+
+		dataset_build = image_dataset_from_directory(
+			directory,
+			image_size=(300, 300),
+			batch_size= 5,
+			label_mode=None,
+			color_mode="grayscale"
+		)
+
+		'''for batch in dataset_build: #para cada lote no dataset
+			for img in batch:	  #para cada imagem do lote	
+				imagem = array_to_img(img) #transformando uma imagem do lote em uma imagem PIL
+				imagem.show()
+				print(type(imagem))
+				break
+			break'''
+
+		return dataset_build

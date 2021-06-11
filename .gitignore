@@ -1,1 +1,4 @@
-/src/images/
+/src/images_train/
+/src/images_validation/
+/.vscode/*
+*.pyc
