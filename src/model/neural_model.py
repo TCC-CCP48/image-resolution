@@ -37,7 +37,7 @@ class NeuralModel:
 
     
         
-        self.neural_model.fit(train_dataset, steps_per_epoch=100, epochs=30, verbose=2, validation_data=valdation_dataset)
+        self.neural_model.fit(train_dataset, epochs=30, verbose=2, validation_data=valdation_dataset)
 
         #self.neural_model.save('modelo_de_teste_salvo.txt')
 

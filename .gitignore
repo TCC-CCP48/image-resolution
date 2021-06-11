@@ -1,2 +1,5 @@
 /src/images_train/
 /src/images_validation/
+./vscode/
+./src/__pycache__/
+./src/model/__pycache__/
