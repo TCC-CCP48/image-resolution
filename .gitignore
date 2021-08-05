@@ -1,4 +1,4 @@
-/src/images_train/
-/src/images_validation/
-/.vscode/*
+.*
+!/.gitignore
 *.pyc
+images/
