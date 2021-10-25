@@ -1,35 +1,16 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'App.ui'
 #
-#   forms.py
-#   Objetivo:       Agrupar classes que representam a visualização do aplicativo.
-#   Autores:        Caroline, Daniel, Leonardo e Paloma
-#   Contato:        tcc.ccp48@gmail.com
-#   Data:           15/09/2021
+# Created by: PyQt5 UI code generator 5.13.0
+#
+# WARNING! All changes made in this file will be lost!
 
 
-# Imports necessários
-from models.model import *
-from utils.utils import botaoComIcone, nomeDoArquivo
-from functools import partial
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtGui import QStandardItemModel, QStandardItem
 
 
-class FormApp(QtWidgets.QMainWindow):
-    
-    def __init__(self, controller) -> None:
-        """
-        Método construtor da classe FormApp.
-        """
-        super(FormApp, self).__init__()
-
-        # Inicializando atributos da classe
-        self.controller = controller
-        self._declaraEstilos()
-        self.setupUi(self)
-        self._delegaAcoes()
-
-
+class Ui_App_IVision(object):
     def setupUi(self, App_IVision):
         App_IVision.setObjectName("App_IVision")
         App_IVision.resize(823, 600)
@@ -40,7 +21,8 @@ class FormApp(QtWidgets.QMainWindow):
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.stckPrincipal = QtWidgets.QStackedWidget(self.centralwidget)
-        self.stckPrincipal.setStyleSheet(self._estilo_frm_principal)
+        self.stckPrincipal.setStyleSheet("background-color: #171717;\n"
+"color: #EDEDED;")
         self.stckPrincipal.setObjectName("stckPrincipal")
         self.pgInicial = QtWidgets.QWidget()
         self.pgInicial.setObjectName("pgInicial")
@@ -71,13 +53,7 @@ class FormApp(QtWidgets.QMainWindow):
         self.btnIcone.setStyleSheet("border: none;")
         self.btnIcone.setText("")
         icon = QtGui.QIcon()
-
-        icon.addPixmap(
-                QtGui.QPixmap("../../../icone.png"), 
-                QtGui.QIcon.Normal, 
-                QtGui.QIcon.Off
-        )
-        
+        icon.addPixmap(QtGui.QPixmap("../../../icone.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnIcone.setIcon(icon)
         self.btnIcone.setIconSize(QtCore.QSize(150, 150))
         self.btnIcone.setObjectName("btnIcone")
@@ -98,7 +74,19 @@ class FormApp(QtWidgets.QMainWindow):
         self.verticalLayout_6.addItem(spacerItem2)
         self.btnIniciar = QtWidgets.QPushButton(self.frmIconeTitulo)
         self.btnIniciar.setMinimumSize(QtCore.QSize(0, 71))
-        self.btnIniciar.setStyleSheet(self._estilo_btn_destaque)
+        self.btnIniciar.setStyleSheet("QPushButton{    \n"
+"    background-color: #ff7a22;\n"
+"    border: 2px;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton::hover{\n"
+"    background-color: #ffbd4b;\n"
+"}\n"
+"\n"
+"QPushButton::focus{\n"
+"    background-color: #ff8913;\n"
+"}")
         self.btnIniciar.setObjectName("btnIniciar")
         self.verticalLayout_6.addWidget(self.btnIniciar)
         self.horizontalLayout_2.addWidget(self.frmIconeTitulo)
@@ -149,7 +137,8 @@ class FormApp(QtWidgets.QMainWindow):
         self.btnPreviaImg.setObjectName("btnPreviaImg")
         self.verticalLayout_11.addWidget(self.btnPreviaImg)
         self.frmConfigTemplate = QtWidgets.QFrame(self.frmPreviaTemplate)
-        self.frmConfigTemplate.setStyleSheet(self._estilo_frm_secundario)
+        self.frmConfigTemplate.setStyleSheet("background-color: #262626;\n"
+"border-radius: 10;")
         self.frmConfigTemplate.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frmConfigTemplate.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frmConfigTemplate.setObjectName("frmConfigTemplate")
@@ -158,7 +147,7 @@ class FormApp(QtWidgets.QMainWindow):
         self.verticalLayout_8.setObjectName("verticalLayout_8")
         self.frmInfoTemplate = QtWidgets.QFrame(self.frmConfigTemplate)
         self.frmInfoTemplate.setMaximumSize(QtCore.QSize(16777215, 61))
-        self.frmInfoTemplate.setStyleSheet(self._estilo_frm_titulo)
+        self.frmInfoTemplate.setStyleSheet("background-color: #4a4a4a;")
         self.frmInfoTemplate.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frmInfoTemplate.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frmInfoTemplate.setObjectName("frmInfoTemplate")
@@ -178,12 +167,36 @@ class FormApp(QtWidgets.QMainWindow):
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
         self.btnPadraoPapel = QtWidgets.QPushButton(self.frmBtnPapelFoto)
         self.btnPadraoPapel.setMinimumSize(QtCore.QSize(0, 30))
-        self.btnPadraoPapel.setStyleSheet(self._estilo_btn_clicado)
+        self.btnPadraoPapel.setStyleSheet("QPushButton{    \n"
+"    background-color: rgba(255, 122, 34, 150);\n"
+"    border: 2px;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton::hover{\n"
+"    background-color: #ffbd4b;\n"
+"}\n"
+"\n"
+"QPushButton::focus{\n"
+"    background-color: #ff8913;\n"
+"}")
         self.btnPadraoPapel.setObjectName("btnPadraoPapel")
         self.horizontalLayout_7.addWidget(self.btnPadraoPapel)
         self.btnPadraoFoto = QtWidgets.QPushButton(self.frmBtnPapelFoto)
         self.btnPadraoFoto.setMinimumSize(QtCore.QSize(0, 30))
-        self.btnPadraoFoto.setStyleSheet(self._estilo_btn_desfoque)
+        self.btnPadraoFoto.setStyleSheet("QPushButton{    \n"
+"    background-color: rgba(255, 122, 34, 150);\n"
+"    border: 2px;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton::hover{\n"
+"    background-color: #ffbd4b;\n"
+"}\n"
+"\n"
+"QPushButton::focus{\n"
+"    background-color: #ff8913;\n"
+"}")
         self.btnPadraoFoto.setObjectName("btnPadraoFoto")
         self.horizontalLayout_7.addWidget(self.btnPadraoFoto)
         self.verticalLayout_8.addWidget(self.frmBtnPapelFoto)
@@ -201,7 +214,21 @@ class FormApp(QtWidgets.QMainWindow):
         sizePolicy.setHeightForWidth(self.cmbTamanhoImpressao.sizePolicy().hasHeightForWidth())
         self.cmbTamanhoImpressao.setSizePolicy(sizePolicy)
         self.cmbTamanhoImpressao.setMaximumSize(QtCore.QSize(16777215, 50))
-        self.cmbTamanhoImpressao.setStyleSheet(self._estilo_cmbBox)
+        self.cmbTamanhoImpressao.setStyleSheet("QComboBox{\n"
+"    color: #171717;\n"
+"    background-color: #EDEDED;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    border: 0px;\n"
+"}\n"
+"\n"
+"QComboBox::down-arrow {\n"
+"    image: url(C:/dev/python-projects/image-resolution/image-resolution-dev_daniel/down-arrow.png);\n"
+"    width: 15px;\n"
+"    height: 15px;\n"
+"       border-radius: 10px;\n"
+"}")
         self.cmbTamanhoImpressao.setObjectName("cmbTamanhoImpressao")
         self.cmbTamanhoImpressao.addItem("")
         self.horizontalLayout_8.addWidget(self.cmbTamanhoImpressao)
@@ -210,7 +237,8 @@ class FormApp(QtWidgets.QMainWindow):
         self.horizontalLayout_9.addWidget(self.frmPreviaTemplate)
         self.frmConfigImg = QtWidgets.QFrame(self.frmImgEDetalhes)
         self.frmConfigImg.setMaximumSize(QtCore.QSize(400, 16777215))
-        self.frmConfigImg.setStyleSheet(self._estilo_frm_secundario)
+        self.frmConfigImg.setStyleSheet("background-color: #262626;\n"
+"border-radius: 10;")
         self.frmConfigImg.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frmConfigImg.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frmConfigImg.setObjectName("frmConfigImg")
@@ -219,7 +247,7 @@ class FormApp(QtWidgets.QMainWindow):
         self.verticalLayout_9.setObjectName("verticalLayout_9")
         self.frmInfoImg = QtWidgets.QFrame(self.frmConfigImg)
         self.frmInfoImg.setMaximumSize(QtCore.QSize(16777215, 61))
-        self.frmInfoImg.setStyleSheet(self._estilo_frm_titulo)
+        self.frmInfoImg.setStyleSheet("background-color: #4a4a4a;")
         self.frmInfoImg.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frmInfoImg.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frmInfoImg.setObjectName("frmInfoImg")
@@ -332,7 +360,7 @@ class FormApp(QtWidgets.QMainWindow):
         self.verticalLayout_9.addWidget(self.frmConfigInfos)
         self.frmInfoTituloFator = QtWidgets.QFrame(self.frmConfigImg)
         self.frmInfoTituloFator.setMaximumSize(QtCore.QSize(16777215, 61))
-        self.frmInfoTituloFator.setStyleSheet(self._estilo_frm_titulo)
+        self.frmInfoTituloFator.setStyleSheet("background-color: #4a4a4a;")
         self.frmInfoTituloFator.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frmInfoTituloFator.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frmInfoTituloFator.setObjectName("frmInfoTituloFator")
@@ -351,17 +379,53 @@ class FormApp(QtWidgets.QMainWindow):
         self.verticalLayout_10.setObjectName("verticalLayout_10")
         self.btn2x = QtWidgets.QPushButton(self.frmBtnFatores)
         self.btn2x.setMaximumSize(QtCore.QSize(16777215, 30))
-        self.btn2x.setStyleSheet(self._estilo_btn_desfoque)
+        self.btn2x.setStyleSheet("QPushButton{    \n"
+"    background-color: rgba(255, 122, 34, 150);\n"
+"    border: 2px;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton::hover{\n"
+"    background-color: #ffbd4b;\n"
+"}\n"
+"\n"
+"QPushButton::focus{\n"
+"    background-color: #ff8913;\n"
+"}")
         self.btn2x.setObjectName("btn2x")
         self.verticalLayout_10.addWidget(self.btn2x)
         self.btn4x = QtWidgets.QPushButton(self.frmBtnFatores)
         self.btn4x.setMaximumSize(QtCore.QSize(16777215, 30))
-        self.btn4x.setStyleSheet(self._estilo_btn_desfoque)
+        self.btn4x.setStyleSheet("QPushButton{    \n"
+"    background-color: rgba(255, 122, 34, 150);\n"
+"    border: 2px;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton::hover{\n"
+"    background-color: #ffbd4b;\n"
+"}\n"
+"\n"
+"QPushButton::focus{\n"
+"    background-color: #ff8913;\n"
+"}")
         self.btn4x.setObjectName("btn4x")
         self.verticalLayout_10.addWidget(self.btn4x)
         self.btn8x = QtWidgets.QPushButton(self.frmBtnFatores)
         self.btn8x.setMaximumSize(QtCore.QSize(16777215, 30))
-        self.btn8x.setStyleSheet(self._estilo_btn_clicado)
+        self.btn8x.setStyleSheet("QPushButton{    \n"
+"    background-color: rgba(255, 122, 34, 150);\n"
+"    border: 2px;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton::hover{\n"
+"    background-color: #ffbd4b;\n"
+"}\n"
+"\n"
+"QPushButton::focus{\n"
+"    background-color: #ff8913;\n"
+"}")
         self.btn8x.setObjectName("btn8x")
         self.verticalLayout_10.addWidget(self.btn8x)
         self.verticalLayout_9.addWidget(self.frmBtnFatores)
@@ -384,7 +448,19 @@ class FormApp(QtWidgets.QMainWindow):
         self.btnVoltarInicio.setSizePolicy(sizePolicy)
         self.btnVoltarInicio.setMinimumSize(QtCore.QSize(0, 0))
         self.btnVoltarInicio.setMaximumSize(QtCore.QSize(150, 50))
-        self.btnVoltarInicio.setStyleSheet(self._estilo_btn_desfoque)
+        self.btnVoltarInicio.setStyleSheet("QPushButton{    \n"
+"    background-color: rgba(255, 122, 34, 150);\n"
+"    border: 2px;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton::hover{\n"
+"    background-color: #ffbd4b;\n"
+"}\n"
+"\n"
+"QPushButton::focus{\n"
+"    background-color: #ff8913;\n"
+"}")
         self.btnVoltarInicio.setObjectName("btnVoltarInicio")
         self.horizontalLayout_3.addWidget(self.btnVoltarInicio)
         spacerItem4 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
@@ -397,7 +473,19 @@ class FormApp(QtWidgets.QMainWindow):
         self.btnProcessaImg.setSizePolicy(sizePolicy)
         self.btnProcessaImg.setMinimumSize(QtCore.QSize(0, 0))
         self.btnProcessaImg.setMaximumSize(QtCore.QSize(150, 50))
-        self.btnProcessaImg.setStyleSheet(self._estilo_btn_destaque)
+        self.btnProcessaImg.setStyleSheet("QPushButton{    \n"
+"    background-color: #ff7a22;\n"
+"    border: 2px;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton::hover{\n"
+"    background-color: #ffbd4b;\n"
+"}\n"
+"\n"
+"QPushButton::focus{\n"
+"    background-color: #ff8913;\n"
+"}")
         self.btnProcessaImg.setObjectName("btnProcessaImg")
         self.horizontalLayout_3.addWidget(self.btnProcessaImg)
         spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -450,7 +538,19 @@ class FormApp(QtWidgets.QMainWindow):
         self.verticalLayout_12.addWidget(self.btnPreviaImgProcessada)
         self.btnPreviaProcessada = QtWidgets.QPushButton(self.frmPreviaTemplateProcessada)
         self.btnPreviaProcessada.setMinimumSize(QtCore.QSize(0, 30))
-        self.btnPreviaProcessada.setStyleSheet(self._estilo_btn_desfoque)
+        self.btnPreviaProcessada.setStyleSheet("QPushButton{    \n"
+"    background-color: rgba(255, 122, 34, 150);\n"
+"    border: 2px;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton::hover{\n"
+"    background-color: #ffbd4b;\n"
+"}\n"
+"\n"
+"QPushButton::focus{\n"
+"    background-color: #ff8913;\n"
+"}")
         self.btnPreviaProcessada.setObjectName("btnPreviaProcessada")
         self.verticalLayout_12.addWidget(self.btnPreviaProcessada)
         self.horizontalLayout_10.addWidget(self.frmPreviaTemplateProcessada)
@@ -461,7 +561,8 @@ class FormApp(QtWidgets.QMainWindow):
         sizePolicy.setHeightForWidth(self.frmComparacao.sizePolicy().hasHeightForWidth())
         self.frmComparacao.setSizePolicy(sizePolicy)
         self.frmComparacao.setMaximumSize(QtCore.QSize(400, 500))
-        self.frmComparacao.setStyleSheet(self._estilo_frm_secundario)
+        self.frmComparacao.setStyleSheet("background-color: #262626;\n"
+"border-radius: 10;")
         self.frmComparacao.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frmComparacao.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frmComparacao.setObjectName("frmComparacao")
@@ -470,7 +571,7 @@ class FormApp(QtWidgets.QMainWindow):
         self.verticalLayout_13.setObjectName("verticalLayout_13")
         self.frmInfoImgProcessada = QtWidgets.QFrame(self.frmComparacao)
         self.frmInfoImgProcessada.setMaximumSize(QtCore.QSize(16777215, 61))
-        self.frmInfoImgProcessada.setStyleSheet(self._estilo_frm_titulo)
+        self.frmInfoImgProcessada.setStyleSheet("background-color: #4a4a4a;")
         self.frmInfoImgProcessada.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frmInfoImgProcessada.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frmInfoImgProcessada.setObjectName("frmInfoImgProcessada")
@@ -538,20 +639,21 @@ class FormApp(QtWidgets.QMainWindow):
         self.lblNomeImgProcessada.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.lblNomeImgProcessada.setObjectName("lblNomeImgProcessada")
         self.verticalLayout_14.addWidget(self.lblNomeImgProcessada)
-        self.lblTemplateImagemProcessada = QtWidgets.QLabel(self.frmNomeResPPIProcessada)
+        self.lblPPIImagemProcessada = QtWidgets.QLabel(self.frmNomeResPPIProcessada)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lblTemplateImagemProcessada.sizePolicy().hasHeightForWidth())
-        self.lblTemplateImagemProcessada.setSizePolicy(sizePolicy)
-        self.lblTemplateImagemProcessada.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.lblTemplateImagemProcessada.setObjectName("lblPPIImagemProcessada")
-        self.verticalLayout_14.addWidget(self.lblTemplateImagemProcessada)
+        sizePolicy.setHeightForWidth(self.lblPPIImagemProcessada.sizePolicy().hasHeightForWidth())
+        self.lblPPIImagemProcessada.setSizePolicy(sizePolicy)
+        self.lblPPIImagemProcessada.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.lblPPIImagemProcessada.setObjectName("lblPPIImagemProcessada")
+        self.verticalLayout_14.addWidget(self.lblPPIImagemProcessada)
         self.horizontalLayout_16.addWidget(self.frmNomeResPPIProcessada)
         self.verticalLayout_13.addWidget(self.frmComparacaoOriginalProcessada)
         self.frmInfoComparacao = QtWidgets.QFrame(self.frmComparacao)
         self.frmInfoComparacao.setMaximumSize(QtCore.QSize(16777215, 61))
-        self.frmInfoComparacao.setStyleSheet(self._estilo_frm_titulo_quadrado)
+        self.frmInfoComparacao.setStyleSheet("background-color: #4a4a4a;\n"
+"border-radius: 0px;")
         self.frmInfoComparacao.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frmInfoComparacao.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frmInfoComparacao.setObjectName("frmInfoComparacao")
@@ -576,7 +678,8 @@ class FormApp(QtWidgets.QMainWindow):
         self.horizontalLayout_12.addWidget(self.lblDetalhesImgProcessada)
         self.verticalLayout_13.addWidget(self.frmInfoComparacao)
         self.frmDetalhesComparacao = QtWidgets.QFrame(self.frmComparacao)
-        self.frmDetalhesComparacao.setStyleSheet(self._estilo_frm_titulo_quadrado)
+        self.frmDetalhesComparacao.setStyleSheet("background-color: #4a4a4a;\n"
+"border-radius: 0px;")
         self.frmDetalhesComparacao.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frmDetalhesComparacao.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frmDetalhesComparacao.setObjectName("frmDetalhesComparacao")
@@ -584,7 +687,8 @@ class FormApp(QtWidgets.QMainWindow):
         self.horizontalLayout_13.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_13.setObjectName("horizontalLayout_13")
         self.frmDetalhesImgOriginal = QtWidgets.QFrame(self.frmDetalhesComparacao)
-        self.frmDetalhesImgOriginal.setStyleSheet(self._estilo_frm_secundario_quadrado)
+        self.frmDetalhesImgOriginal.setStyleSheet("background-color: #262626;\n"
+"border-radius: 0px;")
         self.frmDetalhesImgOriginal.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frmDetalhesImgOriginal.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frmDetalhesImgOriginal.setObjectName("frmDetalhesImgOriginal")
@@ -609,7 +713,8 @@ class FormApp(QtWidgets.QMainWindow):
         self.verticalLayout_15.addWidget(self.lblDetalhesImgOriginalRes)
         self.horizontalLayout_13.addWidget(self.frmDetalhesImgOriginal)
         self.frmDetalhesImgProcessada = QtWidgets.QFrame(self.frmDetalhesComparacao)
-        self.frmDetalhesImgProcessada.setStyleSheet(self._estilo_frm_secundario_quadrado)
+        self.frmDetalhesImgProcessada.setStyleSheet("background-color: #262626;\n"
+"border-radius: 0px;")
         self.frmDetalhesImgProcessada.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frmDetalhesImgProcessada.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frmDetalhesImgProcessada.setObjectName("frmDetalhesImgProcessada")
@@ -621,8 +726,8 @@ class FormApp(QtWidgets.QMainWindow):
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lblDetalhesImgProcessadaPPI.sizePolicy().hasHeightForWidth())
-        self.lblDetalhesImgProcessadaPPI.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.lblDetalhesImgProcessadaPPI.setSizePolicy(sizePolicy)
+        self.lblDetalhesImgProcessadaPPI.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.lblDetalhesImgProcessadaPPI.setObjectName("lblDetalhesImgProcessadaPPI")
         self.verticalLayout_16.addWidget(self.lblDetalhesImgProcessadaPPI)
         self.lblDetalhesImgProcessadaRes = QtWidgets.QLabel(self.frmDetalhesImgProcessada)
@@ -631,8 +736,8 @@ class FormApp(QtWidgets.QMainWindow):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lblDetalhesImgProcessadaRes.sizePolicy().hasHeightForWidth())
         self.lblDetalhesImgProcessadaRes.setSizePolicy(sizePolicy)
-        self.lblDetalhesImgProcessadaRes.setObjectName("lblDetalhesImgProcessadaRes")
         self.lblDetalhesImgProcessadaRes.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.lblDetalhesImgProcessadaRes.setObjectName("lblDetalhesImgProcessadaRes")
         self.verticalLayout_16.addWidget(self.lblDetalhesImgProcessadaRes)
         self.horizontalLayout_13.addWidget(self.frmDetalhesImgProcessada)
         self.verticalLayout_13.addWidget(self.frmDetalhesComparacao)
@@ -655,7 +760,19 @@ class FormApp(QtWidgets.QMainWindow):
         self.btnReprocessar.setSizePolicy(sizePolicy)
         self.btnReprocessar.setMinimumSize(QtCore.QSize(0, 0))
         self.btnReprocessar.setMaximumSize(QtCore.QSize(150, 50))
-        self.btnReprocessar.setStyleSheet(self._estilo_btn_desfoque)
+        self.btnReprocessar.setStyleSheet("QPushButton{    \n"
+"    background-color: rgba(255, 122, 34, 150);\n"
+"    border: 2px;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton::hover{\n"
+"    background-color: #ffbd4b;\n"
+"}\n"
+"\n"
+"QPushButton::focus{\n"
+"    background-color: #ff8913;\n"
+"}")
         self.btnReprocessar.setObjectName("btnReprocessar")
         self.horizontalLayout_14.addWidget(self.btnReprocessar)
         spacerItem9 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
@@ -668,7 +785,19 @@ class FormApp(QtWidgets.QMainWindow):
         self.btnSalvar.setSizePolicy(sizePolicy)
         self.btnSalvar.setMinimumSize(QtCore.QSize(0, 0))
         self.btnSalvar.setMaximumSize(QtCore.QSize(150, 50))
-        self.btnSalvar.setStyleSheet(self._estilo_btn_destaque)
+        self.btnSalvar.setStyleSheet("QPushButton{    \n"
+"    background-color: #ff7a22;\n"
+"    border: 2px;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton::hover{\n"
+"    background-color: #ffbd4b;\n"
+"}\n"
+"\n"
+"QPushButton::focus{\n"
+"    background-color: #ff8913;\n"
+"}")
         self.btnSalvar.setObjectName("btnSalvar")
         self.horizontalLayout_14.addWidget(self.btnSalvar)
         spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -721,7 +850,19 @@ class FormApp(QtWidgets.QMainWindow):
         self.verticalLayout_19.addItem(spacerItem14)
         self.btnVoltarAg = QtWidgets.QPushButton(self.frmIconeTituloAg)
         self.btnVoltarAg.setMinimumSize(QtCore.QSize(0, 71))
-        self.btnVoltarAg.setStyleSheet(self._estilo_btn_destaque)
+        self.btnVoltarAg.setStyleSheet("QPushButton{    \n"
+"    background-color: #ff7a22;\n"
+"    border: 2px;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton::hover{\n"
+"    background-color: #ffbd4b;\n"
+"}\n"
+"\n"
+"QPushButton::focus{\n"
+"    background-color: #ff8913;\n"
+"}")
         self.btnVoltarAg.setObjectName("btnVoltarAg")
         self.verticalLayout_19.addWidget(self.btnVoltarAg)
         spacerItem15 = QtWidgets.QSpacerItem(20, 30, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
@@ -741,7 +882,6 @@ class FormApp(QtWidgets.QMainWindow):
         self.stckPrincipal.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(App_IVision)
 
-
     def retranslateUi(self, App_IVision):
         _translate = QtCore.QCoreApplication.translate
         App_IVision.setWindowTitle(_translate("App_IVision", "IVision"))
@@ -756,9 +896,9 @@ class FormApp(QtWidgets.QMainWindow):
         self.lblInfoNomeImg.setText(_translate("App_IVision", "Nome:"))
         self.lblInfoResolucaoImg.setText(_translate("App_IVision", "Resolução:"))
         self.lblInfoPPIImagem.setText(_translate("App_IVision", "PPI:"))
+        self.lblInfoResolucaoImgSaida.setText(_translate("App_IVision", "Resolução de Saída:"))
         self.lblNomeImg.setText(_translate("App_IVision", "<Nome IMG>"))
         self.lblResolucaoImg.setText(_translate("App_IVision", "<Resolução (512x512 px)>"))
-        self.lblInfoResolucaoImgSaida.setText(_translate("App_IVision", "Resolução de Saída:"))
         self.lblPPIImagem.setText(_translate("App_IVision", "<Numero PPI>"))
         self.lblResolucaoImgSaida.setText(_translate("App_IVision", "<Resolução (512x512 px)>"))
         self.lblTituloFator.setText(_translate("App_IVision", "Escolha o fator de aumento"))
@@ -772,7 +912,7 @@ class FormApp(QtWidgets.QMainWindow):
         self.lblNomeImgProcessadaInfo.setText(_translate("App_IVision", "Nome:"))
         self.lblPPIImagemProcessadaInfo.setText(_translate("App_IVision", "Template:"))
         self.lblNomeImgProcessada.setText(_translate("App_IVision", "<Nome IMG>"))
-        self.lblTemplateImagemProcessada.setText(_translate("App_IVision", "<Numero PPI>"))
+        self.lblPPIImagemProcessada.setText(_translate("App_IVision", "<Numero PPI>"))
         self.lblDetalhesImgOriginal.setText(_translate("App_IVision", "Original"))
         self.lblDetalhesImgProcessada.setText(_translate("App_IVision", "Aumentado"))
         self.lblDetalhesImgOriginalPPI.setText(_translate("App_IVision", "<ppi_original>"))
@@ -783,222 +923,3 @@ class FormApp(QtWidgets.QMainWindow):
         self.btnSalvar.setText(_translate("App_IVision", "Salvar"))
         self.lblAg.setText(_translate("App_IVision", "Obrigado por usar nossa aplicação!"))
         self.btnVoltarAg.setText(_translate("App_IVision", "Voltar ao Início"))
-
-
-    def atualizaDadosUpload(self, imagem: Imagem) -> None:
-        """
-        Método para que atualiza informações de PPI na tela de upload.
-        :param imagem: objeto de tipo Imagem que será configurado na tela de upload.
-        :return: None
-        """
-        textoPPI = f"{imagem.ppi} PPI"
-        self.lblPPIImagem.setText(textoPPI)
-
-
-    def configuraDadosUpload(self, imagem: Imagem, fator: int) -> None:
-        """
-        Método que ao receber um objeto de tipo Imagem, configura na tela os dados do mesmo, para informar ao usuário qual imagem será processada.
-        :param imagem: objeto do tipo Imagem a ser configurada.
-        :param fator: int que representa em quantas vezes a imagem será aumentada.
-        :return: None
-        """
-        # Coletando as informações
-        textoNome = nomeDoArquivo(imagem.caminhoImg)
-        textoResolucao = f"{imagem.largura} x {imagem.altura} px"
-
-        # Coletando o padrão do template da imagem fornecido
-        templateImagem = imagem.tipoTemplate
-        templateInicial = templateImagem.padrao().toString()
-        listaTemplate = templateImagem.listaMembros()
-
-        # Calculando resolução de saída
-        textoResolucaoSaida = f"{imagem.largura * fator} x {imagem.altura * fator} px"
-
-        # Atribuindo cada info à seus respectivos campos
-        self.lblNomeImg.setText(textoNome)
-        self.lblResolucaoImg.setText(textoResolucao)
-        self.lblResolucaoImgSaida.setText(textoResolucaoSaida)
-        self.atualizaDadosUpload(imagem)
-        
-        self.configuraOpcaoTemplate(templateImagem)
-        self.cmbTamanhoImpressao.clear()
-        self.cmbTamanhoImpressao.addItems(listaTemplate)
-        self.cmbTamanhoImpressao.setCurrentText(templateInicial)
-
-
-    def configuraImgPrevia(self, imgOriginal: Imagem, imgProcessada: Imagem) -> None:
-        """
-        Método para configurar a tela de prévia de imagem processada.
-        :param imgOriginal: objeto Imagem escolhido pelo usuário.
-        :param imgProcessada: objeto Imagem processada.
-        :return: None
-        """
-        # Configurando prévia no botão
-        self.btnPreviaImgProcessada = botaoComIcone(
-            btn=self.btnPreviaImgProcessada,
-            caminho=imgProcessada.caminhoImg,
-            tamanho=(300, 300)
-        )
-        
-        # Capturando as informações de ambas imagens
-        nomeImg: str = nomeDoArquivo(imgOriginal.caminhoImg)
-        templateImgOriginal: str = f"{imgOriginal.tipoTemplate.toString()}"
-        resImgOriginal: str = f"{imgOriginal.largura} x {imgOriginal.altura} px"
-        resImgProcessada: str = f"{imgProcessada.largura} x {imgProcessada.altura} px"
-        ppiImgOriginal: str = f"{imgOriginal.ppi} PPI"
-        ppiImgProcessada: str = f"{imgProcessada.ppi} PPI"
-
-        # Setando os labels com as informações obtidas
-        self.lblNomeImgProcessada.setText(nomeImg)
-        self.lblTemplateImagemProcessada.setText(templateImgOriginal)
-        self.lblDetalhesImgOriginalPPI.setText(ppiImgOriginal)
-        self.lblDetalhesImgOriginalRes.setText(resImgOriginal)
-        self.lblDetalhesImgProcessadaPPI.setText(ppiImgProcessada)
-        self.lblDetalhesImgProcessadaRes.setText(resImgProcessada)
-
-        self.stckPrincipal.setCurrentWidget(self.pgDecisao)
-
-
-    def configuraOpcaoFator(self, fator: int) -> None:
-        """
-        Método que configura o design dos botões de fator de escolha, dando destaque ao btn clicado.
-        :param fator: int que representa qual o botão clicado pelo usuário.
-        :return: None
-        """
-        # Desfocando todos os botões
-        self.btn2x.setStyleSheet(self._estilo_btn_desfoque)
-        self.btn4x.setStyleSheet(self._estilo_btn_desfoque)
-        self.btn8x.setStyleSheet(self._estilo_btn_desfoque)
-        
-        # Dando destaque ao botão clicado
-        dictEscolha: dict = {
-                2: self.btn2x,
-                4: self.btn4x,
-                8: self.btn8x
-        }
-        btnClicado = dictEscolha.get(fator, self.btn8x)
-        btnClicado.setStyleSheet(self._estilo_btn_clicado)
-
-
-    def configuraOpcaoTemplate(self, template: TipoTemplate) -> None:
-        """
-        Método que configura os botões de padrão de template, para destaque/desfoque do botão selecionado.
-        :param template: TipoTemplate que determina se o botão "Papel" e "Foto" receberá destaque.
-        :return: None
-        """
-        if isinstance(template, TemplateFoto):
-            self.btnPadraoFoto.setStyleSheet(self._estilo_btn_clicado)
-            self.btnPadraoPapel.setStyleSheet(self._estilo_btn_desfoque)
-        else:
-            self.btnPadraoFoto.setStyleSheet(self._estilo_btn_desfoque)
-            self.btnPadraoPapel.setStyleSheet(self._estilo_btn_clicado)
-
-
-    def configuraPrevia(self, btn: QtWidgets.QPushButton, caminho: str) -> None:
-        """
-        Método para adicionar a imagem de upload/processada para um botão, configurando a prévia da mesma ao usuário.
-        :param btn: QPushButton a receber o ícone.
-        :param caminho: str que representa o caminho da imagem a ser mostrada.
-        :return: None
-        """
-        largura, altura = 400, 300
-        btn = botaoComIcone(btn, caminho, (largura, altura))
-
-
-    def _declaraEstilos(self) -> None:
-        """
-        Método para declarar todos os estilos utilizados pelos botões do aplicativo.
-        :return: None
-        """
-        self._estilo_btn_clicado: str = """
-        QPushButton{	
-            background-color: #ff8913; 
-            border: 2px;
-            border-radius: 5px;
-        }
-        """
-
-        self._estilo_btn_destaque: str = """
-        QPushButton{	
-            background-color: #ff7a22;
-            border: 2px;
-            border-radius: 5px;
-        }
-
-        QPushButton::hover{
-            background-color: #ffbd4b;
-        }
-        """
-        
-        self._estilo_btn_desfoque: str = """
-        QPushButton{	
-            background-color: rgba(255, 122, 34, 150);
-            border: 2px;
-            border-radius: 5px;
-        }
-
-        QPushButton::hover{
-            background-color: #ffbd4b;
-        }
-        """
-
-        self._estilo_cmbBox: str = """
-        QComboBox{
-            color: #171717;
-            background-color: #EDEDED;
-        }
-
-        QComboBox::drop-down {
-            border: 0px;
-        }
-
-        QComboBox::down-arrow {
-            image: url(C:/dev/python-projects/image-resolution/image-resolution-dev_daniel/down-arrow.png);
-            width: 15px;
-            height: 15px;
-            border-radius: 10px;
-        }
-        """
-
-        self._estilo_frm_principal: str = """
-        background-color: #171717;
-        color: #EDEDED;
-        """
-
-        self._estilo_frm_secundario: str = """
-        background-color: #262626;
-        border-radius: 10;
-        """
-
-        self._estilo_frm_secundario_quadrado: str = """
-        background-color: #262626;
-        border-radius: 0;
-        """
-
-        self._estilo_frm_titulo: str = """
-        background-color: #4a4a4a;
-        """
-
-        self._estilo_frm_titulo_quadrado: str = """
-        background-color: #4a4a4a;
-        border-radius: 0px;
-        """
-
-
-    def _delegaAcoes(self) -> None:
-        """
-        Método para delegar todas as ações dos botões da janela FormApp.
-        """
-        self.btnIniciar.clicked.connect(self.controller.iniciaUpload)
-        self.cmbTamanhoImpressao.activated.connect(self.controller.mudouTamanhoImpressao)
-        self.btnPadraoPapel.clicked.connect(partial(self.controller.mudouPadraoImpressao, TemplatePapel))
-        self.btnPadraoFoto.clicked.connect(partial(self.controller.mudouPadraoImpressao, TemplateFoto))
-        self.btn2x.clicked.connect(partial(self.controller.salvaFatorUpscale, 2))
-        self.btn4x.clicked.connect(partial(self.controller.salvaFatorUpscale, 4))
-        self.btn8x.clicked.connect(partial(self.controller.salvaFatorUpscale, 8))
-        self.btnVoltarInicio.clicked.connect(self.controller.voltarHomepage)
-        self.btnProcessaImg.clicked.connect(self.controller.processarImagem)
-        self.btnPreviaProcessada.clicked.connect(self.controller.abrirPrevia)
-        self.btnReprocessar.clicked.connect(self.controller.reprocessar)
-        self.btnSalvar.clicked.connect(self.controller.salvarImagem)
-        self.btnVoltarAg.clicked.connect(self.controller.voltarHomepage)

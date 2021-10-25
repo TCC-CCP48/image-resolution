@@ -8,9 +8,7 @@
 
 
 # Imports necessários
-import os
 import sys
-import PIL
 from PyQt5.QtWidgets import QApplication, QFileDialog
 
 from models.model import *
@@ -28,7 +26,7 @@ class Controller:
         self.app = QApplication(sys.argv)
         self.form = FormApp(self)
         self.modelo = constroi_modelo(fatorUpscale=8, canais=1)
-        self.fatorRedimensionamento = 1
+        self.fatorRedimensionamento = 8
 
 
     def main(self) -> None:
@@ -70,7 +68,7 @@ class Controller:
 
             # Mudando a página para opções de upload e configurando previa
             self.form.configuraPrevia(self.form.btnPreviaImg, self.imgOriginal.caminhoImg)
-            self.form.configuraDadosUpload(self.imgOriginal)
+            self.form.configuraDadosUpload(self.imgOriginal, self.fatorRedimensionamento)
             self.form.stckPrincipal.setCurrentWidget(self.form.pgUpload)
 
 
@@ -88,8 +86,7 @@ class Controller:
         self.imgOriginal.tipoTemplate = template.padrao()
         
         # Configurando as informações na tela
-        self.form.configuraDadosUpload(self.imgOriginal)
-        
+        self.form.configuraDadosUpload(self.imgOriginal, self.fatorRedimensionamento)
 
 
     def mudouTamanhoImpressao(self) -> None:
@@ -108,6 +105,7 @@ class Controller:
                 novoTemplate = templateUtilizado.fromString(tamanhoAtual)
 
                 # Alterando o tamanho do template da imagem
+                self.imgOriginal.tipoTemplate = novoTemplate
                 self.imgOriginal.template = novoTemplate.value
 
                 # Configurando novas informações na tela
@@ -124,6 +122,8 @@ class Controller:
         :return: None
         """
         self.fatorRedimensionamento = fator
+        self.form.configuraDadosUpload(self.imgOriginal, self.fatorRedimensionamento)
+        self.form.configuraOpcaoFator(self.fatorRedimensionamento)
 
 
     def processarImagem(self) -> None:
@@ -150,6 +150,11 @@ class Controller:
         # Mostrando tela de reprocessamento
         self.form.configuraImgPrevia(self.imgOriginal, self.imgProcessada)
 
+
+    def reprocessar(self) -> None:
+        # TODO: escrever o método reprocessar
+        pass
+
     
     def abrirPrevia(self) -> None:
         """
@@ -170,6 +175,8 @@ class Controller:
             # Parametrizando o QFileDialog
             options = QFileDialog.Options()
             options |= QFileDialog.DontUseNativeDialog
+            
+            extensaoImgProcessada: str = self.imgOriginal.extensao
 
             # Abrindo a tela para salvar a imagem
             caminhoSalvarImg, _ = QFileDialog.getSaveFileName(
@@ -180,13 +187,21 @@ class Controller:
                     options=options
             )
             
-            self.imgProcessada.caminhoImg = caminhoSalvarImg
+            self.imgProcessada.caminhoImg = caminhoSalvarImg + extensaoImgProcessada
             self.imgProcessada.salvar()
             print("Salvou imagem!")
 
             # Configurando extensão
             # extensaoImgOriginal: str = self.imgOriginal.extensao
 
-
         except Exception as e:
             print(e)
+
+    
+    def voltarHomepage(self) -> None:
+        """
+        Método que volta a aplicação para a página final.
+        :return: None
+        """
+        self.form.stckPrincipal.setCurrentWidget(self.form.pgInicial)
+
