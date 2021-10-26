@@ -15,6 +15,29 @@ from PyQt5.QtWidgets import QPushButton
 from logging import Logger, FileHandler, Formatter
 
 
+CAMINHO_OFFSIDE: str = os.path.join(
+    os.getcwd(),
+    "other",
+    "Offside-Regular.ttf"
+)
+
+CAMINHO_IMGS: str = os.path.join(
+    os.getcwd(),
+    "other",
+    "imgs_resource"
+)
+
+CAMINHO_LOGO: str = os.path.join(
+    CAMINHO_IMGS,
+    "logo_ivision.png"
+)
+
+CAMINHO_SETA_BAIXO: str = os.path.join(
+        CAMINHO_IMGS,
+        "downarrow.png"
+)
+
+
 def botaoComIcone(btn: QPushButton, caminho: str, tamanho: tuple) -> QPushButton:
     """
     Método que configura um ícone para um botão, a partir de uma imagem e tamanho requisitados.

@@ -17,11 +17,6 @@ from math import ceil
 class Imagem:
     """
     Classe que representa uma imagem a ser processada pela rede neural ou que já foi processada.
-
-    Atributos
-    ---------
-
-    TODO: Descrever atributos e métodos da classe Imagem
     """
 
     def __init__(self, caminhoImg="", img=None) -> None:

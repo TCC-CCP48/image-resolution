@@ -122,7 +122,7 @@ class Controller:
         :return: None
         """
         self.fatorRedimensionamento = fator
-        self.form.configuraDadosUpload(self.imgOriginal, self.fatorRedimensionamento)
+        self.form.atualizaResSaida(self.imgOriginal, self.fatorRedimensionamento)
         self.form.configuraOpcaoFator(self.fatorRedimensionamento)
 
 
@@ -189,10 +189,9 @@ class Controller:
             
             self.imgProcessada.caminhoImg = caminhoSalvarImg + extensaoImgProcessada
             self.imgProcessada.salvar()
-            print("Salvou imagem!")
-
-            # Configurando extensão
-            # extensaoImgOriginal: str = self.imgOriginal.extensao
+            
+            # Mudando para a tela de agradecimento
+            self.form.stckPrincipal.setCurrentWidget(self.form.pgAgradecimento)
 
         except Exception as e:
             print(e)

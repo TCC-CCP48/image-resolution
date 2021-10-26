@@ -9,23 +9,28 @@
 
 # Imports necessários
 from models.model import *
-from utils.utils import botaoComIcone, nomeDoArquivo
+from utils.utils import *
 from functools import partial
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtGui import QStandardItemModel, QStandardItem
 
 
 class FormApp(QtWidgets.QMainWindow):
-    
+
     def __init__(self, controller) -> None:
         """
         Método construtor da classe FormApp.
         """
         super(FormApp, self).__init__()
+        self.controller = controller
+
+        # Adicionando a fonte na aplicação
+        QtGui.QFontDatabase.addApplicationFont(
+            CAMINHO_OFFSIDE
+        )
 
         # Inicializando atributos da classe
-        self.controller = controller
         self._declaraEstilos()
+        self.setStyleSheet("font-family: Offside;")
         self.setupUi(self)
         self._delegaAcoes()
 
@@ -73,7 +78,7 @@ class FormApp(QtWidgets.QMainWindow):
         icon = QtGui.QIcon()
 
         icon.addPixmap(
-                QtGui.QPixmap("../../../icone.png"), 
+                QtGui.QPixmap(CAMINHO_LOGO), 
                 QtGui.QIcon.Normal, 
                 QtGui.QIcon.Off
         )
@@ -793,6 +798,15 @@ class FormApp(QtWidgets.QMainWindow):
         """
         textoPPI = f"{imagem.ppi} PPI"
         self.lblPPIImagem.setText(textoPPI)
+    
+
+    def atualizaResSaida(self, imagem: Imagem, fator: int) -> None:
+        """
+        Método que atualiza a resolução calculada de saída. Método disparado quando o usuário altera a escolha do fator de saída.
+        """
+        # Calculando resolução de saída
+        textoResolucaoSaida = f"{imagem.largura * fator} x {imagem.altura * fator} px"
+        self.lblResolucaoImgSaida.setText(textoResolucaoSaida)
 
 
     def configuraDadosUpload(self, imagem: Imagem, fator: int) -> None:
@@ -811,14 +825,11 @@ class FormApp(QtWidgets.QMainWindow):
         templateInicial = templateImagem.padrao().toString()
         listaTemplate = templateImagem.listaMembros()
 
-        # Calculando resolução de saída
-        textoResolucaoSaida = f"{imagem.largura * fator} x {imagem.altura * fator} px"
-
         # Atribuindo cada info à seus respectivos campos
         self.lblNomeImg.setText(textoNome)
         self.lblResolucaoImg.setText(textoResolucao)
-        self.lblResolucaoImgSaida.setText(textoResolucaoSaida)
         self.atualizaDadosUpload(imagem)
+        self.atualizaResSaida(imagem, fator)
         
         self.configuraOpcaoTemplate(templateImagem)
         self.cmbTamanhoImpressao.clear()
@@ -911,7 +922,7 @@ class FormApp(QtWidgets.QMainWindow):
         :return: None
         """
         self._estilo_btn_clicado: str = """
-        QPushButton{	
+        QPushButton{
             background-color: #ff8913; 
             border: 2px;
             border-radius: 5px;
@@ -952,8 +963,8 @@ class FormApp(QtWidgets.QMainWindow):
             border: 0px;
         }
 
-        QComboBox::down-arrow {
-            image: url(C:/dev/python-projects/image-resolution/image-resolution-dev_daniel/down-arrow.png);
+        QComboBox::down-arrow { 
+            image: url(""" + CAMINHO_SETA_BAIXO + """);
             width: 15px;
             height: 15px;
             border-radius: 10px;
