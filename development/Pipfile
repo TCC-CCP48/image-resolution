@@ -4,8 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+numpy = "*"
+tensorflow = "*"
+keras = "*"
+pillow = "*"
+pyqt5 = "==5.13.0"
 
 [dev-packages]
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"

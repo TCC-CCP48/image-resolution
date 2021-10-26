@@ -1,0 +1,4 @@
+Original image size: 992x707 and image with upscale factor 8: 7936x5656 
+
+Original image size: 1028x1616 and image with upscale factor 8: 8224x12928 
+
