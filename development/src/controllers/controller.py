@@ -12,8 +12,10 @@ import sys
 from PyQt5.QtWidgets import QApplication, QFileDialog
 
 from models.model import *
-from views.forms import FormApp
+from views.forms import *
 from utils.utilsNeuralNetwork import *
+
+from PIL.Image import DecompressionBombError
 
 
 class Controller:
@@ -35,7 +37,7 @@ class Controller:
         :return: None
         """
         self.form.show()
-        sys.exit(self.app.exec_())
+        self.app.exit(self.app.exec_())
     
 
     def iniciaUpload(self) -> None:
@@ -43,7 +45,6 @@ class Controller:
         Método que disponibiliza ao usuário realizar o upload da imagem a ser trabalhada.
         :return: None
         """
-        
         try:
             # Parametrizando o QFileDialog
             options = QFileDialog.Options()
@@ -58,22 +59,38 @@ class Controller:
                     options=options
             )
 
+            telaLoading = TelaLoading("Carregando imagem...")
+            telaLoading.show()
+            self.app.processEvents()
+
             # Verificando se o usuário escolheu uma imagem válida
             extensaoCaminhoImg: str = caminhoImg[caminhoImg.find("."):]
             if caminhoImg == "" or extensaoCaminhoImg not in [".jpg", ".jpeg", ".png"]:
+                mostraMensagemErro(
+                        "O arquivo passado não é valido. " +
+                        "Por favor, adicione um arquivo de extensão válida (.jpg, .jpeg ou .png)."
+                )
                 return
 
             # Novo objeto de Imagem sendo instanciado
             self.imgOriginal = Imagem(caminhoImg)
+
+            # Validando se a imagem está dentro dos requisitos
+            if self.imgOriginal.totalPx > LIMITE_PX:
+                mostraMensagemErro(
+                    f"A imagem não pode ser processada pois possui pixels além do permitido.\n" +
+                    f"Tamanho da imagem: {self.imgOriginal.largura}px x {self.imgOriginal.altura}px = {self.imgOriginal.totalPx}px\n" +  
+                    f"Limite: {LIMITE_PX}px" 
+                )
+                return
 
             # Mudando a página para opções de upload e configurando previa
             self.form.configuraPrevia(self.form.btnPreviaImg, self.imgOriginal.caminhoImg)
             self.form.configuraDadosUpload(self.imgOriginal, self.fatorRedimensionamento)
             self.form.stckPrincipal.setCurrentWidget(self.form.pgUpload)
 
-
         except Exception as e:
-            print(e)
+            mostraMensagemErro(f"Um erro inesperado aconteceu {e.__class__}. Por favor, tente novamente.")
 
     
     def mudouPadraoImpressao(self, template: TipoTemplate) -> None:
@@ -112,7 +129,7 @@ class Controller:
                 self.form.atualizaDadosUpload(self.imgOriginal)
 
         except Exception as e:
-            print(e)
+            mostraMensagemErro(f"Um erro inesperado aconteceu {e.__class__}. Por favor, tente novamente.")
         
 
     def salvaFatorUpscale(self, fator: int) -> None:
@@ -131,29 +148,45 @@ class Controller:
         Método que processa a imagem via rede neural.
         :return: None
         """
-        # Processando a imagem via rede neural
-        imgProcessada = conversor_alta_resolucao(
-                self.modelo, 
-                self.imgOriginal.img,
-                self.fatorRedimensionamento
-        )
 
-        # Criando objeto de tipo Imagem
-        self.imgProcessada = Imagem(img=imgProcessada)
+        telaLoading = TelaLoading("Processando imagem...")
+        telaLoading.show()
+        self.app.processEvents()
         
-        templateOriginal: TipoTemplate = self.imgOriginal.tipoTemplate
-        self.imgProcessada.tipoTemplate = templateOriginal
+        try:
+            # Processando a imagem via rede neural
+            imgProcessada = conversor_alta_resolucao(
+                    self.modelo, 
+                    self.imgOriginal.img,
+                    self.fatorRedimensionamento
+            )
 
-        extensaoImgOriginal: str = self.imgOriginal.extensao
-        self.imgProcessada.salvar(extensao=extensaoImgOriginal)
+            # Criando objeto de tipo Imagem
+            self.imgProcessada = Imagem(img=imgProcessada)
+            
+            templateOriginal: TipoTemplate = self.imgOriginal.tipoTemplate
+            self.imgProcessada.tipoTemplate = templateOriginal
 
-        # Mostrando tela de reprocessamento
-        self.form.configuraImgPrevia(self.imgOriginal, self.imgProcessada)
+            extensaoImgOriginal: str = self.imgOriginal.extensao
+            self.imgProcessada.salvar(extensao=extensaoImgOriginal)
+
+            # Mostrando tela de reprocessamento
+            self.form.configuraImgPrevia(self.imgOriginal, self.imgProcessada)
+
+        except Exception as e:
+            mostraMensagemErro(f"Um erro inesperado aconteceu {e.__class__}. Por favor, tente novamente.")
 
 
     def reprocessar(self) -> None:
-        # TODO: escrever o método reprocessar
-        pass
+        """
+        Método para reprocessar a imagem na rede neural, a fim de tentar melhorar a qualidade da imagem passada.
+        :return: None
+        """
+    
+        # Mudando a página para opções de upload e configurando previa
+        self.form.configuraPrevia(self.form.btnPreviaImg, self.imgOriginal.caminhoImg)
+        self.form.configuraDadosUpload(self.imgOriginal, self.fatorRedimensionamento)
+        self.form.stckPrincipal.setCurrentWidget(self.form.pgUpload)
 
     
     def abrirPrevia(self) -> None:
@@ -186,15 +219,21 @@ class Controller:
                     "Todos os arquivos(*);;Arquivos de imagem(*.jpg *.png)",
                     options=options
             )
+
+            telaLoading = TelaLoading("Salvando imagem...")
+            telaLoading.show()
+            self.app.processEvents()
             
             self.imgProcessada.caminhoImg = caminhoSalvarImg + extensaoImgProcessada
             self.imgProcessada.salvar()
+
+            mostraMensagemSucesso("Imagem salva com sucesso!")
             
             # Mudando para a tela de agradecimento
             self.form.stckPrincipal.setCurrentWidget(self.form.pgAgradecimento)
 
         except Exception as e:
-            print(e)
+            mostraMensagemErro(f"Um erro inesperado aconteceu {e.__class__}. Por favor, tente novamente.")
 
     
     def voltarHomepage(self) -> None:

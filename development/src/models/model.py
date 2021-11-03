@@ -31,6 +31,7 @@ class Imagem:
         # Atributos da imagem, provenientes de PIL.Image ou calculados
         self.__largura: int = self.__img.size[0]
         self.__altura: int = self.__img.size[1]
+        self.__totalPx: int = self.altura * self.largura
 
         # Atributos calculados, referentes ao DPI
         self.__tipoTemplate: TipoTemplate = TemplatePapel.A5
@@ -78,6 +79,12 @@ class Imagem:
     def altura(self) -> int:
         """ Getter do atributo altura. """
         return self.__altura
+
+
+    @property
+    def totalPx(self) -> int:
+        """ Getter do atributo totalPx. """
+        return self.__totalPx
 
 
     @property

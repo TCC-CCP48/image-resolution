@@ -33,8 +33,13 @@ CAMINHO_LOGO: str = os.path.join(
 )
 
 CAMINHO_SETA_BAIXO: str = os.path.join(
-        CAMINHO_IMGS,
-        "downarrow.png"
+    CAMINHO_IMGS,
+    "downarrow.png"
+)
+
+CAMINHO_LOADING: str = os.path.join(
+    CAMINHO_IMGS,
+    "loading_100px.gif"
 )
 
 

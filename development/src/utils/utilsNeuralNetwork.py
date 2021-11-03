@@ -18,6 +18,11 @@ from tensorflow.keras import layers
 from tensorflow.keras.preprocessing.image import img_to_array
 
 
+# Limite de pixels para processamento de imagens
+LIMITE_PX: int = 9000000
+
+
+
 def constroi_modelo(fatorUpscale=8, canais=1) -> object:
     """
     Método para construir o modelo de rede neural correspondente ao ESPCN.
