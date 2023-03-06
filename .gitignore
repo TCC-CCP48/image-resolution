@@ -1,0 +1,6 @@
+.*
+!/.gitignore
+*.pyc
+images/
+*.jpg
+distrib/build/
