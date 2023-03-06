@@ -10,8 +10,8 @@
 import os
 import PIL
 import math
+import pathlib
 import numpy as np
-
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
@@ -139,7 +139,8 @@ def treino(modelo, pastaCheckpoint):
     #       |           |---      ...
     #       |           |--- imgteste999.png
     #
-    dir_principal = r"/home/dangelo/dev/TCC/image-resolution/images"
+    current_dir = (pathlib.Path(__file__).absolute()).parents[1]
+    dir_principal = r"{}/images".format(current_dir)
 
     # Definição de algumas constantes usadas no programa
     TAMANHO_RECORTE: int = 300

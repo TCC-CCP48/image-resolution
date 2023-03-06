@@ -11,6 +11,7 @@
 import os
 import PIL
 import math
+import pathlib
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
@@ -43,7 +44,8 @@ from tensorflow.keras.preprocessing import image_dataset_from_directory
 #       |           |---      ...
 #       |           |--- imgteste999.png
 #
-dir_principal = r"/home/dangelo/dev/TCC/image-resolution/src/images_keras_docker"
+current_dir = (pathlib.Path(__file__).absolute()).parents[1]
+dir_principal = r"{}/src/images_keras_docker".format(current_dir)
 
 # Definição de algumas constantes usadas no programa
 TAMANHO_RECORTE: int = 512

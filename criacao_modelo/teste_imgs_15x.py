@@ -8,8 +8,8 @@
 import os
 import PIL
 import math
+import pathlib
 import numpy as np
-
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
@@ -89,7 +89,8 @@ def printImagem(modelo, nome):
 
 
 # Pasta com os checkpoints e imagens
-PASTA_CHECKPOINT: str = r"/home/dangelo/dev/TCC/image-resolution/src/criacao_modelo/checkpoint_15x"
+current_dir = (pathlib.Path(__file__).absolute()).parents[1]
+PASTA_CHECKPOINT: str = r"{}/criacao_modelo/checkpoint_15x".format(current_dir)
 ARQUIVO_CHECKPOINT: str = os.path.join(PASTA_CHECKPOINT, "meu-checkpoint")
 PASTA_IMGS: str = r"/home/dangelo/Downloads/imgs_teste"
 
