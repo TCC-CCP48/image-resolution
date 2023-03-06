@@ -1,42 +1,13 @@
-# Melhoria na resolução das imagens com aplicação de redes neurais convolucionais
+# Improved image resolution with the application of convolutional neural networks
 
-## Instruções para colaboradores
+*This was a final year group project for the Computer Science UNIP CCP48 class of 2021 in São José dos Campos, SP - Brazil*
 
-Use `git clone https://github.com/TCC-CCP48/image-resolution.git` para clonar o repositório na sua máquina
+**By: Caroline dos Santos Marques, Daniel D'Angelo de Oliveira, Leonardo Soares de Araujo and Paloma Gabriela de Souza**
 
-Antes de editar o código crie uma *branch* local `git checkout -b feature/nome-da-branch`
+The goal of this software project is to scale up an image without losing its resolution. With technological advances and the need for companies and people to display brands, images are increasingly important, as it is from them that products or services are disclosed in a more attractive and communicative way. However, the problem that can harm those who work and depend on the images for their functionality is their quality, because an image with low resolution can impact several fields. For this, essential tools were used, such as Artificial Intelligence, the convolutional neural network, the ESPCN model for image resizing without quality losses. Requirements that the system must provide to the user to achieve the described objectives were addressed. Python programming language and its libraries were used in order to create the graphical user interface. With the training of networks and the support and use of this tool, it was possible to obtain significant improvements in the images and thus achieve the proposed objectives.
 
-Após editar o código e der `git push` abra um ***Pull Request*** da sua *branch* para a *branch* `develop` e adicione os colaboradores do repositório como revisores (*reviewers*)
-
-Se o seu ***Pull Request*** for aprovado por todos os colaboradores, a sua *branch* será mergeada com a *branch* `develop`, que por sua vez será mergeada com a *branch* `master`
-> Esse processo serve para evitar que erros possam ser passados da sua *branch* para a *branch* principal `master`
-
-## Git Cheatsheet
-
-```
-# Entra na branch especificada:
-git checkout develop  
-
-# Cria uma nova branch:
-git checkout -b feature/nome-da-branch
-
-# Puxa o código do repositório da branch atual:   
-git pull
-
-# Puxa o código do repositório da branch especificada para a 
-branch atual:
-git pull origin develop
-
-# Dá o status do processo:
-git status
-
-# Adiciona todos os arquivos criados/modificados para a 
-branch atual:
-git add .
-
-# Faz o commit na branch atual:
-git commit -m "Titulo do commit"
-
-# Faz o push da branch atual para o repositório
-git push
-```
+--------------------------------------
+### Dependencies
+- Python ^3.7
+- Numpy
+- Tensorflow
